@@ -1,53 +1,49 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native'; // [cite: 37, 100]
-import { SafeAreaView } from 'react-native-safe-area-context'; // [cite: 38]
+import { StyleSheet, Text, View, ScrollView } from 'react-native'; // [cite: 100]
+import { SafeAreaView } from 'react-native-safe-area-context'; // [cite: 31, 38]
 import ProfileCard from './components/ProfileCard'; // [cite: 92]
 
-export default function App() { // [cite: 39]
+export default function App() {
   return (
-    // SafeAreaView cihazın çentiğine (notch) göre içeriği ayarlar [cite: 35, 41]
-    <SafeAreaView style={styles.container}> 
-      {/* ScrollView içeriğin ekranı aşması durumunda kaydırılabilmesini sağlar [cite: 100, 101] */}
-      <ScrollView> 
-        <View style={styles.viewContainer}> 
-          {/* Uygulama başlığı [cite: 35, 43, 53] */}
-          <Text style={styles.title}>My Profile App</Text> 
-          
-          {/* Farklı props değerleri ile render edilen üç adet ProfileCard bileşeni [cite: 93, 94] */}
-          <ProfileCard 
-            name="Ada Lovelace" 
-            role="Mathematician" 
-            imageSource={require('./assets/ada.png')} 
-          /> 
-
-          <ProfileCard 
-            name="Grace Hopper" 
-            role="Computer Scientist" 
-            imageSource={require('./assets/grace.png')} 
-          /> 
-
-          <ProfileCard 
-            name="Hedy Lamarr" 
-            role="Inventor" 
-            imageSource={require('./assets/hedy.png')} 
-          /> 
-        </View>
+    <SafeAreaView style={styles.container}>
+      {/* Kaydırılabilir liste yapısı [cite: 101] */}
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.header}>My Profile App</Text>
+        
+        {/* Üç farklı profil örneği [cite: 93, 94] */}
+        <ProfileCard 
+          name="Ada Lovelace" 
+          role="Mathematician" 
+          imageSource={require('./assets/ada.png')} 
+        />
+        
+        <ProfileCard 
+          name="Grace Hopper" 
+          role="Computer Scientist" 
+          imageSource={require('./assets/grace.png')} 
+        />
+        
+        <ProfileCard 
+          name="Hedy Lamarr" 
+          role="Inventor" 
+          imageSource={require('./assets/hedy.png')} 
+        />
       </ScrollView>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({ // [cite: 48]
+const styles = StyleSheet.create({
   container: {
     flex: 1, // [cite: 49]
-    backgroundColor: '#f0f2f5', // Açık gri arka plan [cite: 50, 54]
+    backgroundColor: '#f0f2f5', // [cite: 50]
   },
-  viewContainer: {
-    padding: 20, // İçerik boşluğu [cite: 51]
+  scrollContent: {
+    padding: 20, // [cite: 51]
   },
-  title: {
+  header: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
     textAlign: 'center',
+    marginVertical: 20,
   },
 });
